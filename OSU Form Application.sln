@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSU Form Application", "OSU Form Application\OSU Form Application.csproj", "{AE9EEA0E-0ABA-4146-8288-781EC76D5AED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSU Form Application.Tests", "OSU Form Application.Tests\OSU Form Application.Tests.csproj", "{6FF3E49C-6D83-4D8A-B4D3-3B9D5EB91BB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE9EEA0E-0ABA-4146-8288-781EC76D5AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE9EEA0E-0ABA-4146-8288-781EC76D5AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE9EEA0E-0ABA-4146-8288-781EC76D5AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE9EEA0E-0ABA-4146-8288-781EC76D5AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FF3E49C-6D83-4D8A-B4D3-3B9D5EB91BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FF3E49C-6D83-4D8A-B4D3-3B9D5EB91BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FF3E49C-6D83-4D8A-B4D3-3B9D5EB91BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FF3E49C-6D83-4D8A-B4D3-3B9D5EB91BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
