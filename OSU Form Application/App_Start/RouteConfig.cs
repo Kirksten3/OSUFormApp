@@ -16,7 +16,7 @@ namespace OSU_Form_Application
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Form", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
