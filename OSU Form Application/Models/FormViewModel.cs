@@ -8,6 +8,18 @@ namespace OSU_Form_Application.Models
 {
     public class FormViewModel
     {
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Course { get; set; }
+
+        [Required]
+        public string Term { get; set; }
+
+        [Required]
+        public string Year { get; set; }
+
         #region Base Quiz Parameters
         [Required]
         public string QuizType { get; set; }
@@ -38,6 +50,8 @@ namespace OSU_Form_Application.Models
 
         public bool LockQuestionsAfterAnswer { get; set; }
         #endregion
+
+        public string AccessCode { get; set; }
 
         #region Time Parameters
         public string DueDate { get; set; }

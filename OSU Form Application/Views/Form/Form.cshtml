@@ -5,7 +5,352 @@
 }
 
 <h2>Form</h2>
-
+<hr />
 <div class="container-fluid">
+    @using (Html.BeginForm())
+    {
+    
+    <div class="row">
+        <div class="col-md-3">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name", style="margin-bottom: 3px;margin-top:3px;" })
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(model => model.Course, new { @class = "form-control", placeholder = "Course Name", style = "margin-bottom: 3px;margin-top:3px;" })
+        </div>
+        <div class="col-md-3">
+            @{
+                List<SelectListItem> TermList = new List<SelectListItem>(){
+                new SelectListItem {Text = "Fall", Value="Fall"},
+                new SelectListItem {Text = "Winter", Value="Winter"},
+                new SelectListItem {Text = "Spring", Value ="Spring"},
+                new SelectListItem {Text = "Summer", Value ="Summer"}
+                };
+            }
+            @Html.DropDownListFor(model => model.Term, TermList, new { @class="form-control", style = "margin-bottom: 3px;margin-top:3px;" })
 
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(model => model.Year, new { @class = "form-control", placeholder = "Year", style = "margin-bottom: 3px;margin-top:3px;" })
+        </div>
+    </div>
+        
+    <hr />
+            
+    <div class="row">
+        <div class="col-md-12">
+
+            @*Quiz Type*@
+            <div class="panel-group" style="margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;">
+                    <div id="panel" class="panel-heading panel-toggle" data-toggle="tooltip" title="">
+                        Quiz Type
+                        <button type="button" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading">Description</div>
+                    
+                    <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body">@Html.RadioButtonFor(model => model.QuizType, "pQuiz") Practice Quiz</div>
+
+                    <div class="panel-body">@Html.RadioButtonFor(model => model.QuizType, "gQuiz") Graded Quiz</div>
+
+                    <div class="panel-body">@Html.RadioButtonFor(model => model.QuizType, "gSurv") Graded Survey</div>
+
+                    <div class="panel-body">@Html.RadioButtonFor(model => model.QuizType, "uSurv") Ungraded Survey</div>
+                    
+                </div>
+            </div>
+            
+            @*Assignment Group*@
+
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;">
+                    <div id="panel" class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Assignment Group
+                        <button type="button" id="show" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading">Description</div>
+
+                    <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body">@Html.TextBoxFor(model => model.AssignmentGroup, new { @class="form-control", placeholder="e.g. Assignments"})</div>
+
+                </div>
+            </div>
+
+            @*Shuffle Answers*@
+
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;">
+                    <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Shuffle Answers
+                        <button type="button" id="show" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading">Description</div>
+
+                    <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body">@Html.CheckBoxFor(model => model.ShuffleAnswers) Shuffle Answers</div>
+
+                </div>
+            </div>
+
+            @*Time Limit*@
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;">
+                    <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Time Limit
+                        <button type="button" id="show" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading">Description</div>
+
+                    <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body">@Html.TextBoxFor(model => model.TimeLimit, new { @class = "form-control", placeholder = "in Minutes" })</div>
+
+                </div>
+            </div>
+
+
+            @*Allow Multiple Attempts*@
+
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;">
+                    <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Allow Multiple Attempts
+                        <button type="button" id="show" class="btn btn-primary btn-xs show2" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border showme" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading showme">Description</div>
+
+                    <hr class="toggle-border showme" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body showme">@Html.CheckBoxFor(model => model.AllowMultipleAttempts) Allow Multiple Attempts</div>
+
+                    <hr class="panel-dependant" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading panel-dependant">Quiz Score to Keep: </div>
+
+                    <div class="panel-body panel-dependant">@Html.RadioButtonFor(model => model.QuizScoreKeep, "high") Highest</div>
+
+                    <div class="panel-body panel-dependant">@Html.RadioButtonFor(model => model.QuizScoreKeep, "late") Latest</div>
+
+                    <div class="panel-body panel-dependant">@Html.RadioButtonFor(model => model.QuizScoreKeep, "avrg") Average</div>
+
+                    <hr class="panel-dependant" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading panel-dependant">Allowed Attempts:</div>
+
+                    <div class="panel-body panel-dependant">@Html.TextBoxFor(Model => Model.AllowedAttempts, new { @class = "form-control", placeholder = "e.g. 2" })</div>
+
+                </div>
+            </div>
+
+            @*Let Students See Their Quiz Responses*@
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;">
+                    <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Quiz Responses
+                        <button type="button" id="show" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading">Description</div>
+
+                    <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body">@Html.CheckBoxFor(model => model.OnlyAfterAttempt) Only Once After Each Attempt</div>
+
+                    <div class="panel-body">MORE HERE LATER</div>
+
+                </div>
+            </div>
+
+            @*Show One Question at a Time*@
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;">
+                    <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Question Settings
+                        <button type="button" id="show" class="btn btn-primary btn-xs show3" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border showme" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading showme">Description</div>
+
+                    <hr class="toggle-border showme" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body panel-controller showme">@Html.CheckBoxFor(model => model.ShowOneQuestionAtTime) Show One Question at a Time</div>
+
+                    <hr class="panel-dependant" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body panel-dependant">@Html.CheckBoxFor(model => model.LockQuestionsAfterAnswer) Lock Questions After Answer</div>
+
+                </div>
+            </div>
+
+            @*Require an Access Code*@
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;">
+                    <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Require Access Code
+                        <button type="button" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading">Description</div>
+
+                    <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body panel-controller">@Html.TextBoxFor(model => model.AccessCode, new { @class="form-control", placeholder = "e.g. Password"})</div>
+
+                </div>
+            </div>
+
+            @*DUE DATE, ETC HERE*@
+            @*Check custom libraries for time input*@
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;">
+                    <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Date Information
+                        <button type="button" id="show" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading">Description</div>
+
+                    <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body panel-controller">Due Date etc...</div>
+
+                </div>
+            </div>
+
+            @*Notify Users this Quiz has Changed*@
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;">
+                    <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Quiz Change
+                        <button type="button" id="show" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading">Description</div>
+
+                    <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body panel-controller">@Html.CheckBoxFor(model => model.NotifyUsersQuizChange) Notify Users this Quiz has Changed</div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    }
 </div>
+
+
+<script type="text/javascript">
+    $('.panel-toggle').hover(function () {
+        if ($('.top-border').is(':visible')) {
+            $(this).attr('title', "Click 'Minimize' To Hide Details");
+        }
+        else {
+            $(this).attr('title', "Click 'Show' to View More Details");
+        }
+    })
+
+    $(function () {
+        @*Default Hiding of Description*@
+        $('.top-border').hide();
+        $('.panel-body').hide();
+        $('.information-heading').hide();
+        $('.toggle-border').hide();
+        $('.panel-dependant').hide();
+
+        @*Enable all tooltips*@
+        //$('[data-toggle="tooltip"]').tooltip();
+    })
+
+    @*Shows Panel Information*@
+    //$('.panel-toggle').on('click', function (e) {
+    //    if (!(e.target.id == "minimize")) {
+    //        $(this).siblings('.information-heading').toggle('slow');
+    //        $(this).siblings('.toggle-border').toggle('slow');
+    //    }
+    //})
+
+    @*Allow Multiple Logic*@
+    $('#AllowMultipleAttempts').on('click', function () {
+        if ($(this).is(':checked')) {
+            $(this).parent().siblings('.panel-dependant').show('slow');
+        }
+        if (!$(this).is(':checked')) {
+            $(this).parent().siblings('.panel-dependant').hide('slow');
+        }
+    })
+
+    $('#ShowOneQuestionAtTime').on('click', function () {
+        if ($(this).is(':checked')) {
+            $(this).parent().siblings('.panel-dependant').show('slow');
+        }
+        if (!$(this).is(':checked')) {
+            $(this).parent().siblings('.panel-dependant').hide('slow');
+        }
+    })
+
+    $('.minimize').on('click', function (e) {
+        $(this).parent().siblings().hide('slow');
+    })
+
+    $('.show1').on('click', function () {
+        $(this).parent().siblings().show('slow');
+        //$(this).parent().siblings('.top-border').show('slow');
+    })
+
+    $('.show2').on('click', function () {
+        if($('#AllowMultipleAttempts').is(':checked')){
+            $(this).parent().siblings().show('slow');
+        }
+        else {
+            $(this).parent().siblings('.showme').show('slow');
+        }
+    })
+
+    $('.show3').on('click', function () {
+        if ($('#ShowOneQuestionAtTime').is(':checked')) {
+            $(this).parent().siblings().show('slow');
+        }
+        else {
+            $(this).parent().siblings('.showme').show('slow');
+        }
+    })
+</script>
