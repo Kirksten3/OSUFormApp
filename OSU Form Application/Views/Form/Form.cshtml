@@ -7,7 +7,7 @@
 <h2>Form</h2>
 <hr />
 <div class="container-fluid">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("FormVerify","Form",FormMethod.Post))
     {
     
     <div class="row">
@@ -231,12 +231,11 @@
                 </div>
             </div>
 
-            @*DUE DATE, ETC HERE*@
-            @*Check custom libraries for time input*@
-            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
-                <div class="panel panel-default" style="border-color:black;">
+            @*DUE DATE*@
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;" >
+                <div class="panel panel-default" style="border-color:black;overflow:visible;">
                     <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
-                        Date Information
+                        Due Date
                         <button type="button" id="show" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
                         <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
                     </div>
@@ -247,7 +246,83 @@
 
                     <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
 
-                    <div class="panel-body panel-controller">Due Date etc...</div>
+                    <div class="panel-body panel-controller">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    @Html.TextBoxFor(model => model.DueDate, new { @class = "form-control", style = "width:100%;" })
+                                    @*<input type='text' class="form-control" />*@
+                                    <span class="input-group-addon btn">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            @*Available From*@
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;overflow:visible;">
+                    <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Available From
+                        <button type="button" id="show" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading">Description</div>
+
+                    <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body panel-controller">
+                        <div class="col-md-3 col-sm-6" style="overflow:visible;">
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    @Html.TextBoxFor(model => model.AvailableFrom, new { @class="form-control"})
+                                    @*<input type='text' class="form-control" />*@
+                                    <span class="input-group-addon btn">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            @*Until*@
+            <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
+                <div class="panel panel-default" style="border-color:black;overflow:visible;">
+                    <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
+                        Until
+                        <button type="button" id="show" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
+                        <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
+                    </div>
+
+                    <hr class="top-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-heading information-heading">Description</div>
+
+                    <hr class="toggle-border" style="margin-top: 0px; margin-bottom: 0px;border-color:black;" />
+
+                    <div class="panel-body panel-controller">
+                        <div class="col-md-3 col-sm-6" style="overflow:visible;">
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    @Html.TextBoxFor(model => model.Until, new { @class = "form-control" })
+                                    @*<input type='text' class="form-control" />*@
+                                    <span class="input-group-addon btn">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -256,7 +331,7 @@
             <div class="panel-group" style="margin-top:5px;margin-bottom:5px;">
                 <div class="panel panel-default" style="border-color:black;">
                     <div class="panel-heading panel-toggle" data-toggle="tooltip" title="Click me see a detailed description">
-                        Quiz Change
+                        Quiz Changes
                         <button type="button" id="show" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
                         <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
                     </div>
@@ -274,8 +349,14 @@
 
         </div>
     </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Submit</button>
+    </div>
+    <br />
     }
 </div>
+<br />
 
 
 <script type="text/javascript">
@@ -296,6 +377,7 @@
         $('.toggle-border').hide();
         $('.panel-dependant').hide();
 
+        $('.date').datetimepicker();
         @*Enable all tooltips*@
         //$('[data-toggle="tooltip"]').tooltip();
     })

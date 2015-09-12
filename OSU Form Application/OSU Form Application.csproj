@@ -302,6 +302,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Form\Index.cshtml" />
     <Content Include="Views\Form\Form.cshtml" />
+    <Content Include="Views\Form\FormVerify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSU_Form_Application.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,14 @@ namespace OSU_Form_Application.Controllers
         public ActionResult Form()
         {
             return View();
+        }
+
+        public ActionResult FormVerify([Bind(Include="Name,Course,Term,Year,QuizType,AssignmentGroup,ShuffleAnswers,TimeLimit,AllowMultipleAttempts,QuizScoreKeepp,AllowedAttempts,OnlyAfterAttempt,ShowOneQuestionAtTime,LockQuestionsAfterAnswer,AccessCode,DueDate,AvailableFrom,Until,NotifyUsersQuizChange")]FormViewModel model){
+            if(ModelState.IsValid){
+
+            }
+            
+            return View(model);
         }
 	}
 }
