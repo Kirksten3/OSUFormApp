@@ -280,7 +280,7 @@
 
 <script type="text/javascript">
     $('.panel-toggle').hover(function () {
-        if ($('.top-border').is(':visible')) {
+        if ($(this).siblings('.top-border').is(':visible')) {
             $(this).attr('title', "Click 'Minimize' To Hide Details");
         }
         else {
