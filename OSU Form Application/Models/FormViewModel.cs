@@ -8,20 +8,20 @@ namespace OSU_Form_Application.Models
 {
     public class FormViewModel
     {
-        [Required]
+        [Required(ErrorMessage="Must enter a Name")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Must enter a Course Name")]
         public string Course { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Must select a Term")]
         public string Term { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Must enter a Year")]
         public string Year { get; set; }
 
         #region Base Quiz Parameters
-        [Required]
+        [Required(ErrorMessage = "Must select a Quiz Type")]
         public string QuizType { get; set; }
 
         public string AssignmentGroup { get; set; }

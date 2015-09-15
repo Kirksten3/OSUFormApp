@@ -4,18 +4,24 @@
     ViewBag.Title = "Form";
 }
 
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
 <h2>Form</h2>
 <hr />
 <div class="container-fluid">
     @using (Html.BeginForm("FormVerify","Form",FormMethod.Post))
     {
-    
+    @Html.ValidationSummary(true)
     <div class="row">
         <div class="col-md-3">
             @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name", style="margin-bottom: 3px;margin-top:3px;" })
+            @Html.ValidationMessageFor(model => model.Name)
         </div>
         <div class="col-md-3">
             @Html.TextBoxFor(model => model.Course, new { @class = "form-control", placeholder = "Course Name", style = "margin-bottom: 3px;margin-top:3px;" })
+            @Html.ValidationMessageFor(model => model.Course)
         </div>
         <div class="col-md-3">
             @{
@@ -26,11 +32,12 @@
                 new SelectListItem {Text = "Summer", Value ="Summer"}
                 };
             }
-            @Html.DropDownListFor(model => model.Term, TermList, new { @class="form-control", style = "margin-bottom: 3px;margin-top:3px;" })
-
+            @Html.DropDownListFor(model => model.Term, TermList,"Select Term", new { @class="form-control", style = "margin-bottom: 3px;margin-top:3px;" })
+            @Html.ValidationMessageFor(model => model.Term)
         </div>
         <div class="col-md-3">
             @Html.TextBoxFor(model => model.Year, new { @class = "form-control", placeholder = "Year", style = "margin-bottom: 3px;margin-top:3px;" })
+            @Html.ValidationMessageFor(model => model.Year)
         </div>
     </div>
         
@@ -44,7 +51,7 @@
             <div class="panel-group" style="margin-bottom:5px;">
                 <div class="panel panel-default" style="border-color:black;">
                     <div id="panel" class="panel-heading panel-toggle" data-toggle="tooltip" title="">
-                        Quiz Type
+                        Quiz Type<span style="margin-left:10px;">@Html.ValidationMessageFor(model => model.QuizType)</span>
                         <button type="button" class="btn btn-primary btn-xs show1" style="float:right;margin-left:5px;">Show</button>
                         <button type="button" class="btn btn-primary btn-xs minimize" style="float:right;">Minimize</button>
                     </div>
@@ -373,87 +380,10 @@
 
     <div class="row" style="margin-top:5px;">
         <div class="col-md-10 col-md-offset-1">
-            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Submit</button>
+            <button id="submit" type="submit" class="btn btn-primary btn-lg" style="width:100%;">Submit</button>
         </div>
     </div>
     }
     </div>
 
-
-<script type="text/javascript">
-    $('.panel-toggle').hover(function () {
-        if ($(this).siblings('.top-border').is(':visible')) {
-            $(this).attr('title', "Click 'Minimize' To Hide Details");
-        }
-        else {
-            $(this).attr('title', "Click 'Show' to View More Details");
-        }
-    })
-
-    $(function () {
-        @*Default Hiding of Description*@
-        $('.top-border').hide();
-        $('.panel-body').hide();
-        $('.information-heading').hide();
-        $('.toggle-border').hide();
-        $('.panel-dependant').hide();
-
-        $('.date').datetimepicker();
-        @*Enable all tooltips*@
-        //$('[data-toggle="tooltip"]').tooltip();
-    })
-
-    @*Shows Panel Information*@
-    //$('.panel-toggle').on('click', function (e) {
-    //    if (!(e.target.id == "minimize")) {
-    //        $(this).siblings('.information-heading').toggle('slow');
-    //        $(this).siblings('.toggle-border').toggle('slow');
-    //    }
-    //})
-
-    @*Allow Multiple Logic*@
-    $('#AllowMultipleAttempts').on('click', function () {
-        if ($(this).is(':checked')) {
-            $(this).parent().siblings('.panel-dependant').show('slow');
-        }
-        if (!$(this).is(':checked')) {
-            $(this).parent().siblings('.panel-dependant').hide('slow');
-        }
-    })
-
-    $('#ShowOneQuestionAtTime').on('click', function () {
-        if ($(this).is(':checked')) {
-            $(this).parent().siblings('.panel-dependant').show('slow');
-        }
-        if (!$(this).is(':checked')) {
-            $(this).parent().siblings('.panel-dependant').hide('slow');
-        }
-    })
-
-    $('.minimize').on('click', function (e) {
-        $(this).parent().siblings().hide('slow');
-    })
-
-    $('.show1').on('click', function () {
-        $(this).parent().siblings().show('slow');
-        //$(this).parent().siblings('.top-border').show('slow');
-    })
-
-    $('.show2').on('click', function () {
-        if($('#AllowMultipleAttempts').is(':checked')){
-            $(this).parent().siblings().show('slow');
-        }
-        else {
-            $(this).parent().siblings('.showme').show('slow');
-        }
-    })
-
-    $('.show3').on('click', function () {
-        if ($('#ShowOneQuestionAtTime').is(':checked')) {
-            $(this).parent().siblings().show('slow');
-        }
-        else {
-            $(this).parent().siblings('.showme').show('slow');
-        }
-    })
-</script>
+<script src=@Url.Content("~/Scripts/formScripts.js") type="text/javascript"></script>
